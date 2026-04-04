@@ -5,7 +5,8 @@
   "main": "SKILL.md",
   "scripts": {
     "install": "bash install.sh",
-    "setup": "bash quickstart.sh"
+    "setup": "bash quickstart.sh",
+    "preuninstall": ".author-card/show-card.sh --message \"感谢使用！\" --no-prompt"
   },
   "bin": {
     "multi-repo-dev-install": "./install.sh",

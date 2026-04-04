@@ -202,3 +202,12 @@ Claude:
 - Git 已配置 SSH 密钥
 - 对目标仓库有读写权限
 - 工作区目录有写权限
+
+---
+
+## 🎨 Author Card
+
+```bash
+# 在 skill 完成时显示作者信息
+.author-card/show-card.sh
+```
