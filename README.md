@@ -64,6 +64,7 @@ $ claude-code
 
 ### 核心能力：多仓库 Git 管理
 
+- 💬 **AI 全自动配置** - 对话即可完成配置，无需手动编辑文件（零门槛）
 - 🚀 **并行开发，零成本切换** - 新开 CLI，秒级创建新工作区，多任务真正并行（🔥 杀手级）
 - 🗂️ **独立工作区隔离** - 功能 A、Bug B 各自独立目录，代码互不干扰
 - 🔄 **自动 Git 克隆** - 一键拉取多个相关项目到工作区，无需手动管理
@@ -132,32 +133,49 @@ npx @yonsun-w/multi-repo-dev multi-repo-dev-install
 
 ## 快速开始
 
-### 1. 初始化配置
+### 💬 让 AI 帮你配置（推荐）
+
+**安装后，直接对话即可，AI 会引导你完成配置：**
+
+```
+你: "帮我配置 multi-repo-dev"
+
+Claude: 好的！我来帮你配置。请告诉我：
+1. 你的项目仓库地址？
+2. 工作区路径放哪里？
+
+你: "仓库是 git@github.com:user/project.git，工作区放 ~/workspace"
+
+Claude: ✅ 配置已创建！现在可以开始使用了。
+```
+
+**就这么简单！AI 会自动：**
+- ✅ 创建 `config.json`
+- ✅ 填写你的项目信息
+- ✅ 验证配置格式
+
+### 🚀 开始开发
+
+直接告诉 Claude 你的需求：
+
+```
+"开发新功能 XX，涉及 project-a 和 project-b"
+```
+
+AI 会自动：
+1. 创建独立工作区
+2. 克隆项目代码
+3. 创建开发分支
+4. 准备就绪！
+
+### 📋 手动配置（可选）
+
+如果你想手动配置：
 
 ```bash
-# 进入 skill 目录
 cd ~/.claude/skills/multi-repo-dev
-
-# 复制示例配置
 cp config.example.json config.json
-
-# 编辑 config.json，填入你的项目信息
-# 主要修改:
-# - projects: 添加你的项目信息
-# - workspace: 设置工作区路径
-```
-
-### 2. 开始使用
-
-```bash
-# 调用 skill
-/multi-repo-dev start
-```
-
-或者直接告诉 Claude:
-
-```
-"我要开发一个新需求,涉及 yone-cmdb 和 cmdb-agent 项目"
+vim config.json  # 编辑配置
 ```
 
 ## 🔄 Git 管理流程
@@ -196,6 +214,21 @@ multi-repo-dev/
 
 ## ⚙️ 配置
 
+### 方式 1: AI 交互配置（推荐）
+
+```
+你: "配置 multi-repo-dev，添加我的项目"
+你: "仓库地址: git@github.com:user/project.git"
+你: "默认分支: main"
+你: "工作区路径: ~/workspace"
+
+Claude: ✅ 已配置完成！
+```
+
+**AI 会自动生成完整配置文件。**
+
+### 方式 2: 手动编辑
+
 编辑 `~/.claude/skills/multi-repo-dev/config.json`:
 
 ```json
@@ -209,8 +242,6 @@ multi-repo-dev/
   "workspace": "~/workspace"
 }
 ```
-
-**就这么简单！** 其他都是可选配置。
 
 ## 💡 最佳实践：并行开发，零成本切换
 
@@ -296,13 +327,72 @@ Terminal 4: 优化性能 D
 # ... 10 个、100 个任务并行！
 ```
 
-### 快速命令
+### 常用命令
 
-| 命令 | 说明 |
-|------|------|
-| `/multi-repo-dev start` | 开始新需求 |
-| `/multi-repo-dev clean` | 清理工作区 |
-| `/multi-repo-dev list` | 列出所有工作区 |
+#### 列出工作区
+
+```bash
+$ /multi-repo-dev list
+```
+
+**输出示例**：
+```
+📊 工作区列表
+
+工作区                                              大小      仓库数
+-------------------------------------------------- ---------- --------
+REQ-20260404-user-auth/                            156M        2
+REQ-20260403-bug-fix/                              89M         1
+REQ-20260402-feature-export/                       234M        3
+
+总计: 3 个工作区，479 MB
+
+💡 提示: 使用 /multi-repo-dev clean 清理已完成的工作区
+```
+
+#### 清理工作区
+
+```bash
+$ /multi-repo-dev clean
+```
+
+**输出示例**：
+```
+🧹 扫描已完成的工作区...
+
+发现 2 个可清理的工作区:
+1. REQ-20260401-completed-task (156 MB)
+2. REQ-20260330-old-feature (234 MB)
+
+清理选项:
+  [完全删除] - 删除整个工作区（包括文档）
+  [仅删除代码] - 保留文档，删除 repos/ 目录
+  [跳过] - 不清理
+
+你选择: 仅删除代码
+
+✅ 已清理 2 个工作区
+📊 释放空间: 390 MB
+📝 文档已保留，供日后参考
+```
+
+#### 开始新需求
+
+```bash
+$ /multi-repo-dev start
+```
+
+**或直接对话**：
+```
+你: "开发用户认证功能，涉及 backend 和 frontend"
+
+Claude:
+✅ 创建工作区: REQ-20260404-user-auth
+✅ 克隆 backend (master)
+✅ 克隆 frontend (main)
+✅ 创建分支: feature/user-auth
+📝 工作区准备就绪！
+```
 
 ### 配置建议
 
