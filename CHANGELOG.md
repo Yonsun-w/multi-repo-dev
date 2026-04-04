@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-04-04
+
+### Fixed
+- 🐛 Standardized metadata format for workspace consistency
+- 🔧 Updated `.meta.template.json` with version tracking
+- 📝 Improved `list` command to handle multiple metadata formats
+
+### Changed
+- 📚 Streamlined documentation - removed 876 lines of redundant content
+- 🗂️ Archived development/publishing guides to `.archive/`
+- ✨ Focused README on killer feature: parallel development without context switching
+- 🎯 Simplified configuration examples
+
+### Added
+- 📄 `FIXES.md` - detailed problem analysis and migration guide
+- 🔢 Version field in metadata for future-proof format upgrades
+
+### Documentation
+- Reduced from 20+ docs to 5 core documents
+- Consolidated installation instructions into README
+- Enhanced parallel development use case examples
+- Added comparison table: traditional vs multi-repo-dev
+
 ## [1.0.0] - 2026-04-04
 
 ### Added
