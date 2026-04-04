@@ -46,6 +46,9 @@ else
     [ -n "$REPO" ] && printf "│  ⭐ %-50s │\n" "喜欢？去 GitHub 点个 star！"
 fi
 
+echo "│                                                           │"
+printf "│  💡 你也想要 skill 水印？                              │\n"
+printf "│     https://github.com/Yonsun-w/skill-author-card      │\n"
 echo "└─────────────────────────────────────────────────────────┘"
 echo ""
 
