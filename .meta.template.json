@@ -1,33 +1,24 @@
 {
+  "version": "1.0",
   "requirementId": "REQ-{date}-{name}",
-  "createdAt": "{timestamp}",
+  "name": "{requirement-name}",
+  "description": "{requirement-description}",
+  "createdAt": "{ISO-8601-timestamp}",
+  "updatedAt": "{ISO-8601-timestamp}",
   "status": "in_progress",
-  "projects": {
-    "project-name": {
-      "branch": "feature/xxx",
+  "projects": [
+    {
+      "name": "project-name",
       "baseBranch": "master",
-      "commits": [],
-      "hasUnpushedChanges": false
+      "devBranch": "feature/xxx",
+      "tech": ["Go", "Vue"]
     }
+  ],
+  "workspace": "/absolute/path/to/workspace",
+  "branches": {
+    "project-name": "feature/xxx"
   },
-  "phases": {
-    "init": {
-      "completed": true,
-      "timestamp": "{timestamp}"
-    },
-    "align": {
-      "completed": false,
-      "timestamp": null
-    },
-    "implement": {
-      "completed": false,
-      "timestamp": null
-    },
-    "finalize": {
-      "completed": false,
-      "timestamp": null
-    }
-  },
-  "tasks": [],
-  "notes": []
+  "commits": {
+    "project-name": "commit-hash"
+  }
 }
