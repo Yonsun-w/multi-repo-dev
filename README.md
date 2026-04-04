@@ -1,7 +1,10 @@
 # Multi-Repo Development Workflow
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/v/release/Yonsun-w/multi-repo-dev)](https://github.com/Yonsun-w/multi-repo-dev/releases)
+[![GitHub stars](https://img.shields.io/github/stars/Yonsun-w/multi-repo-dev)](https://github.com/Yonsun-w/multi-repo-dev/stargazers)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-blue.svg)](https://claude.ai/code)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Yonsun-w/multi-repo-dev/pulls)
 
 完整的多仓库需求开发工作流 skill，适用于 Claude Code。
 
