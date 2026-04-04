@@ -194,58 +194,23 @@ multi-repo-dev/
     └── cleanup-workspace.md     # 阶段5: 工作区清理
 ```
 
-## 配置说明
+## ⚙️ 配置
 
-### config.json 结构
+编辑 `~/.claude/skills/multi-repo-dev/config.json`:
 
 ```json
 {
   "projects": {
-    "项目名称": {
-      "repo": "git仓库地址",
-      "branch": "默认分支",
-      "localPath": "本地路径(可选)",
-      "tech": ["技术栈"],
-      "description": "项目描述"
+    "my-project": {
+      "repo": "git@github.com:user/repo.git",
+      "branch": "main"
     }
   },
-  "workspace": "需求工作区根目录",
-  "settings": {
-    "autoCreateBranch": true,           // 自动创建分支
-    "branchPrefix": "feature/",         // 分支前缀
-    "commitPrefix": "feat",             // commit 前缀
-    "autoTest": true,
-    "requireApproval": {
-      "beforeImplement": true,
-      "beforePush": true
-    }
-  },
-  "cleanup": {
-    "autoPrompt": true,                 // 完成后自动询问清理
-    "defaultMode": "repos-only",        // 默认清理模式
-    "keepDays": 7,                      // 保留最近N天
-    "minDiskSpace": "1GB"               // 磁盘不足时提示
-    "autoTest": true,                   // 自动运行测试
-    "requireApproval": {
-      "beforeImplement": true,          // 实现前需确认
-      "beforePush": true                // 推送前需确认
-    }
-  }
+  "workspace": "~/workspace"
 }
 ```
 
-### 工作区结构
-
-每个任务创建独立目录：
-
-```
-workspace/
-└── feature-name/
-    ├── .meta.json          # 元数据（分支、状态等）
-    └── repos/              # 项目代码
-        ├── project-a/      # 独立 git 仓库
-        └── project-b/      # 独立 git 仓库
-```
+**就这么简单！** 其他都是可选配置。
 
 ## 💡 最佳实践：并行开发，零成本切换
 
@@ -345,90 +310,20 @@ Terminal 4: 优化性能 D
 - ✅ 定期清理已完成的工作区
 - ✅ 使用有意义的分支命名
 
-## 故障排查
+## 📚 文档
 
-### 问题: Git 认证失败
+- [CONTRIBUTING.md](CONTRIBUTING.md) - 贡献指南
+- [CHANGELOG.md](CHANGELOG.md) - 版本历史
 
-```bash
-# 检查 SSH 密钥
-ssh -T git@gitlab.com
+## 🐛 问题反馈
 
-# 或使用 HTTPS (需配置 token)
-```
+- [GitHub Issues](https://github.com/Yonsun-w/multi-repo-dev/issues)
+- [GitHub Discussions](https://github.com/Yonsun-w/multi-repo-dev/discussions)
 
-### 问题: 工作区路径冲突
+---
 
-```bash
-# 使用清理命令
-/multi-repo-dev clean
+## 📄 License
 
-# 或手动清理
-rm -rf workspace/REQ-xxx
+MIT © [yonsun](https://github.com/Yonsun-w)
 
-# 或在配置中修改 workspace 路径
-```
-
-### 问题: 磁盘空间不足
-
-使用清理功能释放空间:
-
-```bash
-# 列出并清理已完成的需求
-/multi-repo-dev clean
-
-# 手动检查磁盘占用
-du -sh workspace/REQ-*/
-```
-
-### 问题: 代码拉取慢
-
-```bash
-# 使用本地路径而非每次克隆
-"localPath": "/path/to/existing/repo"
-```
-
-## 扩展
-
-### 添加自定义钩子
-
-在 `config.json` 中添加:
-
-```json
-{
-  "hooks": {
-    "afterInit": "echo 'Workspace created'",
-    "beforeCommit": "npm run lint",
-    "afterPush": "notify-team.sh"
-  }
-}
-```
-
-### 集成 CI/CD
-
-工作区可以作为 CI/CD 的输入:
-
-```yaml
-# .gitlab-ci.yml
-test:
-  script:
-    - cd ${WORKSPACE}/repos/project-a
-    - npm test
-```
-
-## 🤝 贡献
-
-欢迎提交改进建议或新功能！查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解更多信息。
-
-## 📄 许可
-
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
-
-## 💬 支持
-
-- 📖 [文档](https://github.com/yonsun/multi-repo-dev/wiki)
-- 🐛 [报告问题](https://github.com/yonsun/multi-repo-dev/issues)
-- 💡 [功能建议](https://github.com/yonsun/multi-repo-dev/issues/new)
-
-## ⭐ Star History
-
-如果这个项目对你有帮助，请给个 Star！
+**如果觉得有用，请给个 ⭐️ Star！**

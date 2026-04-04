@@ -45,7 +45,11 @@
     "SKILL.md",
     "skill.json",
     "config.example.json",
-    "*.md",
+    ".meta.template.json",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
     "workflows/",
     "install.sh",
     "quickstart.sh"
