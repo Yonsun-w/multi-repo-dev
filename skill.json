@@ -1,0 +1,32 @@
+{
+  "name": "multi-repo-dev",
+  "version": "1.0.0",
+  "description": "多仓库需求开发完整工作流,支持跨项目协同开发、需求对齐、代码实现和提交推送",
+  "main": "SKILL.md",
+  "triggers": [
+    "我要开发一个新需求",
+    "帮我创建一个跨项目需求工作区",
+    "开始一个多仓库开发任务",
+    "/multi-repo-dev"
+  ],
+  "commands": {
+    "start": "开始新需求",
+    "resume": "恢复已有需求",
+    "status": "查看当前状态",
+    "config": "查看/编辑配置",
+    "list": "列出所有需求",
+    "clean": "清理已完成的需求工作区"
+  },
+  "keywords": [
+    "multi-repo",
+    "workflow",
+    "development",
+    "requirement",
+    "git",
+    "project-management",
+    "跨项目",
+    "需求开发"
+  ],
+  "category": "workflow",
+  "targetAgents": ["claude-code", "cursor"]
+}

@@ -1,0 +1,33 @@
+{
+  "requirementId": "REQ-{date}-{name}",
+  "createdAt": "{timestamp}",
+  "status": "in_progress",
+  "projects": {
+    "project-name": {
+      "branch": "feature/xxx",
+      "baseBranch": "master",
+      "commits": [],
+      "hasUnpushedChanges": false
+    }
+  },
+  "phases": {
+    "init": {
+      "completed": true,
+      "timestamp": "{timestamp}"
+    },
+    "align": {
+      "completed": false,
+      "timestamp": null
+    },
+    "implement": {
+      "completed": false,
+      "timestamp": null
+    },
+    "finalize": {
+      "completed": false,
+      "timestamp": null
+    }
+  },
+  "tasks": [],
+  "notes": []
+}

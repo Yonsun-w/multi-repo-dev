@@ -1,0 +1,40 @@
+{
+  "$schema": "config-schema.json",
+  "projects": {
+    "yone-cmdb": {
+      "repo": "git@gitlab.com:your-group/yone-cmdb.git",
+      "branch": "master",
+      "localPath": "/Users/yonsun/Project/Yone-CMDB-ALL/yone-cmdb",
+      "tech": ["Go", "Vue", "MySQL"],
+      "description": "CMDB 主项目"
+    },
+    "example-project": {
+      "repo": "git@gitlab.com:your-group/example.git",
+      "branch": "main",
+      "localPath": "/path/to/project",
+      "tech": ["Python", "Django"],
+      "description": "示例项目"
+    }
+  },
+  "workspace": "/Users/yonsun/Project/requirements",
+  "settings": {
+    "autoCreateBranch": true,
+    "branchPrefix": "feature/",
+    "commitPrefix": "feat",
+    "autoTest": true,
+    "requireApproval": {
+      "beforeImplement": true,
+      "beforePush": true
+    }
+  },
+  "templates": {
+    "requirement": "REQUIREMENT_TEMPLATE.md",
+    "implementation": "IMPLEMENTATION_TEMPLATE.md"
+  },
+  "cleanup": {
+    "autoPrompt": true,
+    "defaultMode": "repos-only",
+    "keepDays": 7,
+    "minDiskSpace": "1GB"
+  }
+}
