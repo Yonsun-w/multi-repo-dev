@@ -1,0 +1,22 @@
+# 开发和文档文件（不发布到 npm）
+开源完成总结.md
+CREATE_RELEASE_GUIDE.md
+GITHUB_SETUP_GUIDE.md
+NPM_PUBLISH_GUIDE.md
+RELEASE_NOTES_v1.0.0.md
+
+# Git 相关
+.git
+.gitignore
+.github
+
+# 临时文件
+*.log
+*.tmp
+.DS_Store
+node_modules
+
+# 测试文件
+test/
+tests/
+*.test.js
