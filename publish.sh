@@ -47,10 +47,18 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 0
 fi
 
-# 5. 发布
+# 5. 获取 OTP（如果启用了 2FA）
+echo ""
+read -p "请输入 npm OTP 验证码（6位数字，没有 2FA 直接回车）: " OTP
+
+# 6. 发布
 echo ""
 echo "4️⃣ 发布到 npm..."
-npm publish --access public
+if [ -z "$OTP" ]; then
+    npm publish --access public
+else
+    npm publish --access public --otp="$OTP"
+fi
 
 # 6. 完成
 echo ""
