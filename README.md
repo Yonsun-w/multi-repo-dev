@@ -8,13 +8,57 @@
 [![Claude Code](https://img.shields.io/badge/Claude-Code-blue.svg)](https://claude.ai/code)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Yonsun-w/multi-repo-dev/pulls)
 
-**多仓库 Git 管理利器** - 为跨项目需求开发提供独立工作区和自动化 Git 操作，比 worktree 更简单粗暴。
+**多仓库 Git 管理利器** - 独立工作区 + 自动化 Git 操作，比 worktree 更简单粗暴。
 
-> 💡 **核心价值**: 一个需求涉及多个仓库？自动克隆、统一分支、独立工作区 - 让你专注代码，无需手动管理 Git。
+## 🔥 为什么需要它？
 
-> 🔥 **杀手级功能**: 正在开发功能 A，突然来了 Bug B？**新开 CLI，直接说需求，自动拉新工作区** - A 和 B 完全隔离，互不干扰。真正实现 **10 倍、100 倍并行开发速度**！
+### 传统方式的痛点
 
-> 🤖 **给 AI Assistant 的安装指南**: 如果你是 AI（Claude/ChatGPT/Cursor），查看 **[AI_INSTALL.md](AI_INSTALL.md)** 获取一键安装命令，直接帮用户安装此 skill。
+```bash
+# 正在开发功能 A...
+$ git status
+# 一堆修改中的文件
+
+# 突然来了紧急 Bug B！
+$ git stash              # 😓 保存现场
+$ git checkout -b fix-b  # 😓 切分支
+# 修 Bug B...
+$ git commit && git push
+$ git checkout feature-a # 😓 切回来
+$ git stash pop          # 😓 恢复现场
+# 💥 可能还有冲突...
+```
+
+**问题**:
+- ❌ 频繁 stash/pop，容易出错
+- ❌ 分支切换打断思路
+- ❌ 代码冲突风险
+- ❌ 无法真正并行开发
+
+### 使用 multi-repo-dev
+
+```bash
+# Terminal 1: 开发功能 A
+$ cd workspace/feature-a/yone-cmdb
+$ # 继续开发，啥都不用动！
+
+# Terminal 2: 新开 CLI，处理 Bug B
+$ claude-code
+> "修复用户登录超时 Bug"
+
+# ✅ 自动创建 workspace/fix-login/
+# ✅ 自动克隆代码
+# ✅ 自动创建分支
+# 修完直接提交推送，完成！
+
+# 功能 A 和 Bug B 完全隔离，零干扰！
+```
+
+**优势**:
+- ✅ **零切换成本** - 不需要 stash、不需要切分支
+- ✅ **完全隔离** - 各自独立目录，代码互不影响
+- ✅ **真正并行** - 同时开发 10 个、100 个需求
+- ✅ **10 倍速度** - 这才是真正的 10x 工程师秘诀
 
 ## ✨ 特性
 
@@ -27,11 +71,11 @@
 - 📦 **比 worktree 更简单** - 直接克隆新目录，不依赖现有仓库，更灵活
 - 🧹 **工作区清理** - 需求完成后批量清理所有项目代码，释放空间
 
-### 辅助功能
+### 其他功能
 
-- 📋 **需求文档模板** - 标准化的需求描述和实现方案
-- 📝 **元数据追踪** - 记录需求状态、涉及项目、分支信息
+- 📝 **元数据追踪** - 记录工作区状态、涉及项目、分支信息
 - 🔧 **高度可配置** - 支持自定义项目列表、分支前缀、提交规范
+- 📋 **文档模板** - 可选的需求文档模板（不强制）
 
 ## 📦 安装
 
@@ -192,172 +236,114 @@ multi-repo-dev/
 
 ### 工作区结构
 
-每个需求会创建独立工作区:
+每个任务创建独立目录：
 
 ```
 workspace/
-└── REQ-20260326-feature-name/
-    ├── REQUIREMENT.md          # 需求文档
-    ├── IMPLEMENTATION.md       # 实现方案
-    ├── .meta.json              # 元数据
-    └── repos/                  # 项目代码
-        ├── project-a/
-        │   └── .git/
-        └── project-b/
-            └── .git/
+└── feature-name/
+    ├── .meta.json          # 元数据（分支、状态等）
+    └── repos/              # 项目代码
+        ├── project-a/      # 独立 git 仓库
+        └── project-b/      # 独立 git 仓库
 ```
 
-## 使用场景
+## 💡 最佳实践：并行开发，零成本切换
 
-### 场景 1: 单仓库快速修复
+### 🔥 杀手级用法：多任务真正并行
 
-```
-你: "给 yone-cmdb 添加导出功能"
+**场景**: 正在开发功能 A，突然来了紧急 Bug B
 
-Claude 自动处理：
-1. ✅ 创建工作区: workspace/REQ-20260404-export/
-2. ✅ 克隆代码: git clone <yone-cmdb>
-3. ✅ 创建分支: feature/export
-4. ✅ 生成需求文档
+```bash
+# Terminal 1: 继续开发功能 A（啥都不用动）
+$ cd workspace/feature-a/yone-cmdb
+$ vim service/user.go  # 继续写代码...
 
-你开发 → 提交 → 推送 → 完成
-```
+# Terminal 2: 新开 Claude Code CLI 处理 Bug
+$ claude-code
+> "修复用户登录超时 Bug，涉及 yone-cmdb 和 auth-service"
 
-### 场景 2: 多仓库需求开发（核心场景）
+# Claude 自动：
+# ✅ 创建 workspace/fix-login-timeout/
+# ✅ 克隆 yone-cmdb 和 auth-service
+# ✅ 创建分支 fix/login-timeout
 
-```
-你: "实现主机信息自动同步，涉及 yone-cmdb、cmdb-agent 和 cmdb-sync"
+$ cd workspace/fix-login-timeout/yone-cmdb
+$ vim auth/session.go  # 修 Bug
+$ git commit && git push  # 提交推送，完成！
 
-Claude 自动处理 Git 管理：
-1. ✅ 创建独立工作区: workspace/REQ-20260326-auto-sync-hosts/
-2. ✅ 自动克隆 3 个项目:
-   - git clone <yone-cmdb> → repos/yone-cmdb/
-   - git clone <cmdb-agent> → repos/cmdb-agent/
-   - git clone <cmdb-sync> → repos/cmdb-sync/
-3. ✅ 为所有项目创建同名分支: feature/auto-sync-hosts
-4. ✅ 生成需求文档模板
-
-你专注开发，无需关心 Git 操作：
-- 在各项目中开发代码
-- 本地测试
-- 联调验证
-
-完成后一键提交：
-5. ✅ 统一提交所有项目的改动
-6. ✅ 推送到远程分支
-7. ✅ 清理工作区（可选）
+# 功能 A 和 Bug B 完全隔离，零干扰！
 ```
 
-**核心价值**:
-- 不用手动克隆多个仓库
-- 不用担心目录混乱
-- 不用记住每个项目的分支名
-- 类似 worktree 但更直接粗暴 - 直接新目录新克隆
+**对比传统方式**:
 
-### 场景 3: 并行开发，互不干扰（🔥 杀手级功能）
+| 操作 | 传统方式 | multi-repo-dev |
+|------|---------|----------------|
+| 保存现场 | `git stash` 😓 | 不需要 ✅ |
+| 切换分支 | `git checkout` 😓 | 不需要 ✅ |
+| 代码冲突 | 可能冲突 💥 | 完全隔离 ✅ |
+| 恢复现场 | `git stash pop` 😓 | 不需要 ✅ |
+| 并行能力 | 无法并行 ❌ | 真正并行 ✅ |
 
-**问题场景**:
-```
-你正在开发功能 A（workspace/REQ-0401-feature-a/）
-突然来了紧急 Bug B 要修
-传统做法: stash → 切分支 → 修 bug → 切回 → pop
-结果: 工作被打断，容易出错
-```
+**真实收益**:
+- ✅ **零切换成本** - 不 stash、不切分支、不恢复
+- ✅ **零心智负担** - 每个任务独立环境，清晰明确
+- ✅ **零代码冲突** - 物理隔离，不可能冲突
+- ✅ **10x-100x 提速** - 同时开 10 个 CLI，处理 10 个任务
 
-**使用 multi-repo-dev**:
-```
-Terminal 1: 继续开发功能 A
-你: cd workspace/REQ-0401-feature-a/yone-cmdb
-    # 继续写你的功能 A 代码...
+### 其他使用场景
 
-Terminal 2: 新开一个 Claude Code CLI
-你: "修复用户登录超时的 Bug，涉及 yone-cmdb 和 auth-service"
+#### 场景 1: 单仓库开发
 
-Claude 立即创建新工作区:
-1. ✅ workspace/REQ-0404-fix-login-timeout/
-2. ✅ 自动克隆 yone-cmdb 和 auth-service
-3. ✅ 创建分支 fix/login-timeout
-
-你: 在新工作区修 Bug → 测试 → 提交 → 推送
-功能 A 完全不受影响，代码互不冲突！
-
-完成后:
-Terminal 1: 功能 A 继续开发
-Terminal 2: Bug 已修复并推送，工作区可清理
+```bash
+$ claude-code
+> "给 yone-cmdb 添加导出功能"
+# ✅ 自动创建工作区、克隆代码、创建分支
 ```
 
-**核心价值**:
-- ✅ **零切换成本** - 不需要 stash、切分支
-- ✅ **完全隔离** - 两个工作区互不干扰
-- ✅ **并行开发** - 同时处理 10 个、100 个需求
-- ✅ **十倍百倍提速** - 真正的多任务并行
+#### 场景 2: 多仓库联动开发
 
-### 场景 4: 恢复已有需求
-
-```
-你: "/multi-repo-dev resume REQ-20260320-feature-x"
-
-Claude:
-1. 读取工作区元数据
-2. 检查各项目分支状态
-3. 恢复上次进度
-4. 继续未完成的工作
+```bash
+$ claude-code
+> "实现主机信息同步，涉及 yone-cmdb、cmdb-agent、cmdb-sync"
+# ✅ 自动克隆 3 个项目，创建统一分支
+# ✅ 不用手动管理多个仓库
 ```
 
-### 场景 4: 清理工作区
+#### 场景 3: 清理工作区
 
-```
-你: "开发完成了,帮我清理一下工作区"
-
-Claude:
-扫描工作区,发现 3 个已完成的需求:
-1. REQ-20260401-frontend-update (120 MB)
-2. REQ-20260330-stress-test-integration (156 MB)
-3. REQ-20260401-network-inner-optimization (85 MB)
-
-如何处理?
-[完全删除] [仅删除代码] [不清理]
-
-你: 选择 "仅删除代码"
-
-Claude:
-✅ 已清理 3 个工作区
-📊 释放空间: 361 MB
-📝 保留文档供日后参考
+```bash
+$ claude-code
+> "清理已完成的工作区"
+# ✅ 扫描并清理已合并的工作区
+# ✅ 释放磁盘空间
 ```
 
-## 命令参考
+## 💡 使用技巧
+
+### 最大化并行能力
+
+```bash
+# 同时开启多个 CLI 窗口
+Terminal 1: 开发功能 A
+Terminal 2: 修复 Bug B
+Terminal 3: 重构模块 C
+Terminal 4: 优化性能 D
+# ... 10 个、100 个任务并行！
+```
+
+### 快速命令
 
 | 命令 | 说明 |
 |------|------|
 | `/multi-repo-dev start` | 开始新需求 |
-| `/multi-repo-dev resume <req-id>` | 恢复需求 |
-| `/multi-repo-dev status` | 查看当前状态 |
-| `/multi-repo-dev config` | 查看/编辑配置 |
-| `/multi-repo-dev list` | 列出所有需求 |
-| `/multi-repo-dev clean` | 清理已完成的需求工作区 |
+| `/multi-repo-dev clean` | 清理工作区 |
+| `/multi-repo-dev list` | 列出所有工作区 |
 
-## 最佳实践
+### 配置建议
 
-1. **配置管理**
-   - 将 `config.json` 加入 `.gitignore`
-   - 团队可以共享 `config.example.json`
-
-2. **分支命名**
-   - 使用有意义的名称: `feature/user-auth` 而非 `feature/fix`
-   - 保持与需求 ID 一致
-
-3. **Commit 规范**
-   - 遵循 Conventional Commits
-   - 每个 commit 对应一个完整的功能点
-
-4. **测试**
-   - 开发过程中持续测试
-   - 提交前确保所有测试通过
-
-5. **文档更新**
-   - 及时更新 REQUIREMENT.md 和 IMPLEMENTATION.md
-   - 记录重要决策和变更
+- ✅ 将 `config.json` 加入 `.gitignore`
+- ✅ 定期清理已完成的工作区
+- ✅ 使用有意义的分支命名
 
 ## 故障排查
 
