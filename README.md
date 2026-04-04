@@ -1,6 +1,8 @@
 # Multi-Repo Development Workflow
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@yonsun-w/multi-repo-dev)](https://www.npmjs.com/package/@yonsun-w/multi-repo-dev)
+[![npm downloads](https://img.shields.io/npm/dm/@yonsun-w/multi-repo-dev)](https://www.npmjs.com/package/@yonsun-w/multi-repo-dev)
 [![GitHub release](https://img.shields.io/github/v/release/Yonsun-w/multi-repo-dev)](https://github.com/Yonsun-w/multi-repo-dev/releases)
 [![GitHub stars](https://img.shields.io/github/stars/Yonsun-w/multi-repo-dev)](https://github.com/Yonsun-w/multi-repo-dev/stargazers)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-blue.svg)](https://claude.ai/code)
@@ -56,15 +58,20 @@ cd multi-repo-dev
 bash quickstart.sh
 ```
 
-### 方法 3: NPM 安装（即将支持）
+### 方法 3: NPM 安装
 
 ```bash
 # 全局安装
 npm install -g @yonsun-w/multi-repo-dev
 
-# 或本地安装到 skills 目录
-cd ~/.claude/skills
-npx @yonsun-w/multi-repo-dev
+# 运行安装脚本
+multi-repo-dev-install
+```
+
+或者使用 npx 一次性安装：
+
+```bash
+npx @yonsun-w/multi-repo-dev multi-repo-dev-install
 ```
 
 ## 快速开始
