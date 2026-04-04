@@ -16,24 +16,49 @@
 
 ## 📦 安装
 
-### 方法 1: 克隆安装（推荐）
+### 方法 1: 一键安装（推荐）
+
+使用安装脚本自动完成安装和配置：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Yonsun-w/multi-repo-dev/main/install.sh | bash
+```
+
+或者先下载再安装：
+
+```bash
+# 下载安装脚本
+curl -fsSL https://raw.githubusercontent.com/Yonsun-w/multi-repo-dev/main/install.sh -o install.sh
+
+# 查看脚本内容（可选）
+cat install.sh
+
+# 执行安装
+bash install.sh
+```
+
+### 方法 2: Git 克隆安装
 
 ```bash
 # 克隆仓库到 Claude Code skills 目录
 cd ~/.claude/skills
-git clone https://github.com/yonsun/multi-repo-dev.git
+git clone https://github.com/Yonsun-w/multi-repo-dev.git
 
-# 配置
+# 运行快速配置向导
 cd multi-repo-dev
-cp config.example.json config.json
-# 编辑 config.json 填入你的项目信息
+bash quickstart.sh
 ```
 
-### 方法 2: 手动安装
+### 方法 3: NPM 安装（即将支持）
 
-1. 下载 [最新版本](https://github.com/yonsun/multi-repo-dev/releases)
-2. 解压到 `~/.claude/skills/multi-repo-dev`
-3. 复制 `config.example.json` 为 `config.json` 并配置
+```bash
+# 全局安装
+npm install -g @yonsun-w/multi-repo-dev
+
+# 或本地安装到 skills 目录
+cd ~/.claude/skills
+npx @yonsun-w/multi-repo-dev
+```
 
 ## 快速开始
 
