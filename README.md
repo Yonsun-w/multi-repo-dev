@@ -5,6 +5,8 @@
 
 完整的多仓库需求开发工作流 skill，适用于 Claude Code。
 
+> 🤖 **给 AI Assistant 的安装指南**: 如果你是 AI（Claude/ChatGPT/Cursor），查看 **[AI_INSTALL.md](AI_INSTALL.md)** 获取一键安装命令，直接帮用户安装此 skill。
+
 ## ✨ 特性
 
 - 🚀 **多仓库支持** - 一次性管理多个相关项目的开发
@@ -15,6 +17,8 @@
 - 🔧 **高度可配置** - 支持自定义项目、分支、提交规范等
 
 ## 📦 安装
+
+> 💡 **AI Assistant 安装指南**: 如果你是 AI，查看 [QUICK_INSTALL.md](QUICK_INSTALL.md) 获取安装步骤。
 
 ### 方法 1: 一键安装（推荐）
 
