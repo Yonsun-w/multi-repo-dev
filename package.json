@@ -1,7 +1,7 @@
 {
   "name": "@yonsun-w/multi-repo-dev",
   "version": "1.1.1",
-  "description": "多仓库需求开发完整工作流,支持跨项目协同开发、需求对齐、代码实现和提交推送",
+  "description": "Multi-repository development workflow with independent workspaces and automated Git operations | 多仓库需求开发完整工作流,支持跨项目协同开发、需求对齐、代码实现和提交推送",
   "main": "SKILL.md",
   "scripts": {
     "install": "bash install.sh",
@@ -51,6 +51,7 @@
     "config.example.json",
     ".meta.template.json",
     "README.md",
+    "README.en.md",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "LICENSE",

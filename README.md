@@ -7,7 +7,10 @@
 [![GitHub stars](https://img.shields.io/github/stars/Yonsun-w/multi-repo-dev?style=for-the-badge)](https://github.com/Yonsun-w/multi-repo-dev/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/v/release/Yonsun-w/multi-repo-dev?style=for-the-badge)](https://github.com/Yonsun-w/multi-repo-dev/releases)
+[![npm version](https://img.shields.io/npm/v/@yonsun-w/multi-repo-dev?style=for-the-badge)](https://www.npmjs.com/package/@yonsun-w/multi-repo-dev)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/Yonsun-w/multi-repo-dev/pulls)
+
+[English](README.en.md) | 简体中文
 
 [快速开始](#-快速开始) • [特性](#-特性) • [安装](#-安装) • [最佳实践](#-最佳实践并行开发零成本切换) • [文档](#-文档)
 
